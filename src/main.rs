@@ -4,6 +4,7 @@ mod day01_inverse_captcha;
 mod day02_corruption_checksum;
 mod day03_spiral_memory;
 mod day04_high_entropy_passphrases;
+mod day05_a_maze_of_twisty_trampolines;
 
 fn main() {
     env_logger::init();
@@ -11,7 +12,7 @@ fn main() {
     let day: usize = if let Some(arg1) = std::env::args().nth(1) {
         arg1.parse().expect("argument should be an integer")
     } else {
-        4
+        5
     };
     println!("running day {}\n", day);
     match day {
@@ -19,6 +20,7 @@ fn main() {
         2 => day02_corruption_checksum::run(),
         3 => day03_spiral_memory::run(),
         4 => day04_high_entropy_passphrases::run(),
+        5 => day05_a_maze_of_twisty_trampolines::run(),
         _ => panic!("day {} not found", day),
     }
 }
