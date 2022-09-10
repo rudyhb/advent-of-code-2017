@@ -1,13 +1,14 @@
 use std::collections::{HashMap, HashSet};
 
 pub(crate) fn run() {
+    let input = std::fs::read_to_string("input/input6.txt").unwrap();
     println!(
         "cycles before infinite loop: {}",
-        find_cycles_to_infinite_loop::<16>(get_input())
+        find_cycles_to_infinite_loop::<16>(&input)
     );
     println!(
         "cycles of infinite loop: {}",
-        find_cycles_of_infinite_loop::<16>(get_input())
+        find_cycles_of_infinite_loop::<16>(&input)
     );
 }
 
@@ -80,8 +81,4 @@ mod tests {
     fn test2() {
         assert_eq!(find_cycles_of_infinite_loop::<4>("0 2 7 0"), 4);
     }
-}
-
-fn get_input() -> &'static str {
-    "2	8	8	5	4	2	3	1	5	5	1	2	15	13	5	14"
 }
