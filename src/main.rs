@@ -9,6 +9,8 @@ mod day04_high_entropy_passphrases;
 mod day05_a_maze_of_twisty_trampolines;
 mod day06_memory_reallocation;
 mod day07_recursive_circus;
+mod day08_i_heard_you_like_registers;
+mod day09_stream_processing;
 
 fn main() {
     env_logger::init();
@@ -16,7 +18,7 @@ fn main() {
     let day: usize = if let Some(arg1) = std::env::args().nth(1) {
         arg1.parse().expect("argument should be an integer")
     } else {
-        7
+        9
     };
     println!("running day {}\n", day);
     match day {
@@ -27,6 +29,8 @@ fn main() {
         5 => day05_a_maze_of_twisty_trampolines::run(),
         6 => day06_memory_reallocation::run(),
         7 => day07_recursive_circus::run(),
+        8 => day08_i_heard_you_like_registers::run(),
+        9 => day09_stream_processing::run(),
         _ => panic!("day {} not found", day),
     }
 }
