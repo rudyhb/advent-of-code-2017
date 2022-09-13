@@ -12,6 +12,7 @@ mod day07_recursive_circus;
 mod day08_i_heard_you_like_registers;
 mod day09_stream_processing;
 mod day10_knot_hash;
+mod day11_hex_ed;
 
 fn main() {
     env_logger::init();
@@ -19,7 +20,7 @@ fn main() {
     let day: usize = if let Some(arg1) = std::env::args().nth(1) {
         arg1.parse().expect("argument should be an integer")
     } else {
-        10
+        11
     };
     println!("running day {}\n", day);
     match day {
@@ -33,6 +34,7 @@ fn main() {
         8 => day08_i_heard_you_like_registers::run(),
         9 => day09_stream_processing::run(),
         10 => day10_knot_hash::run(),
+        11 => day11_hex_ed::run(),
         _ => panic!("day {} not found", day),
     }
 }
