@@ -4,7 +4,7 @@ pub(crate) fn run() {
     execute_round(&mut knot, &parse_input(&input), &mut 0, &mut 0);
     println!("multiplying first 2 numbers: {}", knot[0] * knot[1]);
 
-    println!("hash: {}", hash(&input));
+    println!("hash: {}", knot_hash(&input));
 }
 
 fn parse_input(input: &str) -> Vec<usize> {
@@ -14,7 +14,7 @@ fn parse_input(input: &str) -> Vec<usize> {
         .collect()
 }
 
-fn hash(input: &str) -> String {
+fn knot_hash_internal(input: &str, bin: bool) -> String {
     let input = convert_to_ascii_codes(&input);
     let mut knot = get_knot(256);
     let mut current_position = 0;
@@ -23,7 +23,19 @@ fn hash(input: &str) -> String {
         execute_round(&mut knot, &input, &mut current_position, &mut skip_size);
     }
     let dense_hash = calculate_dense_hash(&knot, 16);
-    dense_hash_to_string(&dense_hash)
+    if bin {
+        dense_hash_to_bin_string(&dense_hash)
+    } else {
+        dense_hash_to_string(&dense_hash)
+    }
+}
+
+pub fn knot_hash(input: &str) -> String {
+    knot_hash_internal(input, false)
+}
+
+pub fn knot_hash_bin(input: &str) -> String {
+    knot_hash_internal(input, true)
 }
 
 fn get_knot(size: usize) -> Vec<usize> {
@@ -79,6 +91,10 @@ fn dense_hash_to_string(hash: &[usize]) -> String {
     hash.iter().map(|&val| format!("{:02x}", val)).collect()
 }
 
+fn dense_hash_to_bin_string(hash: &[usize]) -> String {
+    hash.iter().map(|&val| format!("{:08b}", val)).collect()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -93,18 +109,18 @@ mod tests {
 
     #[test]
     fn test2() {
-        assert_eq!(hash(""), "a2582a3a0e66e6e86e3812dcb672a272");
+        assert_eq!(knot_hash(""), "a2582a3a0e66e6e86e3812dcb672a272");
     }
     #[test]
     fn test3() {
-        assert_eq!(hash("AoC 2017"), "33efeb34ea91902bb2f59c9920caa6cd");
+        assert_eq!(knot_hash("AoC 2017"), "33efeb34ea91902bb2f59c9920caa6cd");
     }
     #[test]
     fn test4() {
-        assert_eq!(hash("1,2,3"), "3efbe78a8d82f29979031a4aa0b16a9d");
+        assert_eq!(knot_hash("1,2,3"), "3efbe78a8d82f29979031a4aa0b16a9d");
     }
     #[test]
     fn test5() {
-        assert_eq!(hash("1,2,4"), "63960835bcdc130f0b66d7ff4f6a5a8e");
+        assert_eq!(knot_hash("1,2,4"), "63960835bcdc130f0b66d7ff4f6a5a8e");
     }
 }
