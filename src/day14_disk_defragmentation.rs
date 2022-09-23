@@ -3,9 +3,9 @@ use std::collections::{HashMap, HashSet};
 use crate::day10_knot_hash::knot_hash_bin;
 
 pub(crate) fn run() {
-    let input = "wenycdww";
-    println!("used squares: {}", count_used_squares(input));
-    println!("regions: {}", count_regions(input));
+    let input = std::fs::read_to_string("input/input14.txt").unwrap();
+    println!("used squares: {}", count_used_squares(&input));
+    println!("regions: {}", count_regions(&input));
 }
 
 fn count_used_squares(input: &str) -> usize {
