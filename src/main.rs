@@ -18,6 +18,7 @@ mod day13_packet_scanners;
 mod day14_disk_defragmentation;
 mod day15_dueling_generators;
 mod day16_permutation_promenade;
+mod day17_spinlock;
 
 fn main() {
     env_logger::init();
@@ -25,7 +26,7 @@ fn main() {
     let day: usize = if let Some(arg1) = std::env::args().nth(1) {
         arg1.parse().expect("argument should be an integer")
     } else {
-        16
+        17
     };
     println!("running day {}\n", day);
     match day {
@@ -45,6 +46,7 @@ fn main() {
         14 => day14_disk_defragmentation::run(),
         15 => day15_dueling_generators::run(),
         16 => day16_permutation_promenade::run(),
+        17 => day17_spinlock::run(),
         _ => panic!("day {} not found", day),
     }
 }
