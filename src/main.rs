@@ -1,5 +1,7 @@
 #![feature(hash_drain_filter)]
 
+extern crate core;
+
 use utils::timer::Timer;
 
 mod day01_inverse_captcha;
@@ -19,6 +21,7 @@ mod day14_disk_defragmentation;
 mod day15_dueling_generators;
 mod day16_permutation_promenade;
 mod day17_spinlock;
+mod day18_duet;
 
 fn main() {
     env_logger::init();
@@ -26,7 +29,7 @@ fn main() {
     let day: usize = if let Some(arg1) = std::env::args().nth(1) {
         arg1.parse().expect("argument should be an integer")
     } else {
-        17
+        18
     };
     println!("running day {}\n", day);
     match day {
@@ -47,6 +50,7 @@ fn main() {
         15 => day15_dueling_generators::run(),
         16 => day16_permutation_promenade::run(),
         17 => day17_spinlock::run(),
+        18 => day18_duet::run(),
         _ => panic!("day {} not found", day),
     }
 }
