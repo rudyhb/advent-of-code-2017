@@ -20,15 +20,32 @@ fn build_tower(input: &str) -> Program {
         }
     }
     while !raw_pending.is_empty() {
-        let removed: Vec<_> = raw_pending
-            .drain_filter(|_, program| {
-                program
-                    .children
-                    .iter()
-                    .all(|&child| results.contains_key(child))
-            })
-            .map(|(_, val)| val)
-            .collect();
+        // let removed: Vec<_> = raw_pending
+        //     .drain_filter(|_, program| {
+        //         program
+        //             .children
+        //             .iter()
+        //             .all(|&child| results.contains_key(child))
+        //     })
+        //     .map(|(_, val)| val)
+        //     .collect();
+        let mut removed = Vec::new();
+        for key in raw_pending
+            .keys()
+            .map(|k| k.to_string())
+            .collect::<Vec<_>>()
+            .into_iter()
+        {
+            let program = raw_pending.get(key.as_str()).unwrap();
+            if program
+                .children
+                .iter()
+                .all(|&child| results.contains_key(child))
+            {
+                let program = raw_pending.remove(key.as_str()).unwrap();
+                removed.push(program);
+            }
+        }
         if removed.is_empty() {
             panic!("could not find any more parents");
         }
