@@ -22,6 +22,7 @@ mod day17_spinlock;
 mod day18_duet;
 mod day19_a_series_of_tubes;
 mod day20_particle_swarm;
+mod day21_fractal_art;
 
 fn main() {
     env_logger::init();
@@ -29,7 +30,7 @@ fn main() {
     let day: usize = if let Some(arg1) = std::env::args().nth(1) {
         arg1.parse().expect("argument should be an integer")
     } else {
-        20
+        21
     };
     println!("running day {}\n", day);
     match day {
@@ -53,6 +54,7 @@ fn main() {
         18 => day18_duet::run(),
         19 => day19_a_series_of_tubes::run(),
         20 => day20_particle_swarm::run(),
+        21 => day21_fractal_art::run(),
         _ => panic!("day {} not found", day),
     }
 }
