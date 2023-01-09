@@ -1,0 +1,32 @@
+set b 65
+set c b
+jnz a 2
+jnz 1 5
+mul b 100
+sub b -100000
+set c b
+sub c -17000
+set_is_prime f b -- set f 1
+noop -- set d 2
+noop -- set e 2
+noop -- set g d
+noop -- mul g e
+noop -- sub g b
+noop -- jnz g 2
+noop -- set f 0
+noop -- sub e -1
+noop -- set g e
+noop -- sub g b
+noop -- jnz g -8
+noop -- sub d -1
+noop -- set g d
+noop -- sub g b
+noop -- jnz g -13
+jnz f 2
+sub h -1
+set g b
+sub g c
+jnz g 2
+jnz 1 3
+sub b -17
+jnz 1 -23
