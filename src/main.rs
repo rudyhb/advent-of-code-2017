@@ -24,6 +24,7 @@ mod day21_fractal_art;
 mod day22_sporifica_virus;
 mod day23_coprocessor_conflagration;
 mod day24_electromagnetic_moat;
+mod day25_the_halting_problem;
 
 fn main() {
     env_logger::init();
@@ -31,7 +32,7 @@ fn main() {
     let day: usize = if let Some(arg1) = std::env::args().nth(1) {
         arg1.parse().expect("argument should be an integer")
     } else {
-        24
+        25
     };
     println!("running day {}\n", day);
     match day {
@@ -59,6 +60,7 @@ fn main() {
         22 => day22_sporifica_virus::run(),
         23 => day23_coprocessor_conflagration::run(),
         24 => day24_electromagnetic_moat::run(),
+        25 => day25_the_halting_problem::run(),
         _ => panic!("day {} not found", day),
     }
 }
